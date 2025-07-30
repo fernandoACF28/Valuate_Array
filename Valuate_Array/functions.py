@@ -79,12 +79,13 @@ def Getting_dataframe_from_netCDF(path_netCDF,
 
 
 
-def Getting_dataframe_from_netCDF_sequential(ds,
+def Getting_dataframe_from_netCDF_sequential(path_netCDF,
                                var_ds: str,
                                coordinate_time: str,
                                dict_stations: dict,
                                window_sizes: list[int],
                                path_out: str):
+    ds = xr.open_dataset(path_netCDF)
     data_list = []
     size_time = len(ds[var_ds].time)
     
