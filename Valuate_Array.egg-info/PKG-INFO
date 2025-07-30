@@ -1,9 +1,0 @@
-Metadata-Version: 2.1
-Name: Valuate_Array
-Version: 0.1
-Summary: This package has utility functions to validate products of satellite or variables from reanalysis
-Home-page: https://github.com/fernandoACF28/Valuate_Array
-Author: Fernando Fernandes
-Author-email: fernando.allysson@usp.br
-Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License

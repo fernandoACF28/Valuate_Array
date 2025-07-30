@@ -1,8 +1,0 @@
-README.md
-setup.py
-Valuate_Array/__init__.py
-Valuate_Array/functions.py
-Valuate_Array.egg-info/PKG-INFO
-Valuate_Array.egg-info/SOURCES.txt
-Valuate_Array.egg-info/dependency_links.txt
-Valuate_Array.egg-info/top_level.txt
