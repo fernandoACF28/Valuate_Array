@@ -79,7 +79,7 @@ def Getting_dataframe_from_netCDF(path_netCDF,
 
 
 
-def Getting_dataframe_from_hdf_sequential(ds,
+def Getting_dataframe_from_netCDF_sequential(ds,
                                var_ds: str,
                                coordinate_time: str,
                                dict_stations: dict,
