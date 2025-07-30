@@ -1,9 +1,9 @@
 # Valuate_Array
 
-Pacote Python para avaliação de arrays.
+Packpage for validate dataArray datas.
 
-## Instalação
+## For installing
 
 ```bash
-pip install git+https://github.com/SEU_USUARIO/Valuate_Array.git
+pip install git+https://github.com/fernandoACF28/Valuate_Array.git
 
