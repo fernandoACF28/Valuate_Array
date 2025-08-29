@@ -5,11 +5,11 @@ import xarray as xr
 
 def select_pixels(ds,var:str,
                   station: tuple[float, float],
-                  window_size:int):
+                  window_size:int,lat,lon):
     ds = ds[var]
-    lat,lon = station[0],station[1]
-    lat_idx = np.abs(ds.lat.values - lat).argmin()
-    lon_idx = np.abs(ds.lon.values - lon).argmin()
+    lat_station,lon_station = station[0],station[1]
+    lat_idx = np.abs(ds[lat].values - lat_station).argmin()
+    lon_idx = np.abs(ds[lon].values - lon_station).argmin()
     lat_start = max(0, lat_idx - window_size)
     lat_end = min(len(ds.lat), lat_idx + window_size + 1)  
     lon_start = max(0, lon_idx - window_size)
@@ -51,7 +51,8 @@ def Getting_dataframe_from_netCDF(ds_oppened,
                                coordinate_time: str,
                                dict_stations: dict,
                                window_sizes: list[int],
-                               path_out: str,engine='netcdf4'):
+                               path_out: str,
+                               lat='lat',lon='lon'):
     ds = ds_oppened
     data_list = []
     size_time = len(ds[var_ds][coordinate_time])
@@ -74,7 +75,10 @@ def Getting_dataframe_from_netCDF(ds_oppened,
                     continue
                 
                 ds_filled = select_pixels(ds=ds, var=[var_ds],
-                                          station=coords_station, window_size=win)
+                                          station=coords_station,
+                                          window_size=win,
+                                          lat=lat,
+                                          lon=lon)
                 
                 arr = ds_filled[var_ds].isel(time=i_time).values
                 valid_pixels = int(np.sum(~np.isnan(arr)))
