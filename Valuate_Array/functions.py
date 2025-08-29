@@ -11,9 +11,9 @@ def select_pixels(ds,var:str,
     lat_idx = np.abs(ds[lat].values - lat_station).argmin()
     lon_idx = np.abs(ds[lon].values - lon_station).argmin()
     lat_start = max(0, lat_idx - window_size)
-    lat_end = min(len(ds.lat), lat_idx + window_size + 1)  
+    lat_end = min(len(ds[lat]), lat_idx + window_size + 1)  
     lon_start = max(0, lon_idx - window_size)
-    lon_end = min(len(ds.lon), lon_idx + window_size + 1)
+    lon_end = min(len(ds[lon]), lon_idx + window_size + 1)
 
     DatArray = ds.isel(
                     lat=slice(lat_start, lat_end),
@@ -52,7 +52,8 @@ def Getting_dataframe_from_netCDF(ds_oppened,
                                dict_stations: dict,
                                window_sizes: list[int],
                                path_out: str,
-                               lat='lat',lon='lon'):
+                               lat='lat',
+                               lon='lon'):
     ds = ds_oppened
     data_list = []
     size_time = len(ds[var_ds][coordinate_time])
