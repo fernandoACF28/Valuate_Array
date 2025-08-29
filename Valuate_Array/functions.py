@@ -92,7 +92,8 @@ def Getting_dataframe_from_netCDF(ds_oppened,
                 valid_win = valid_windows(win)
                 
                 if isinstance(valid_win, int) and valid_pixels >= valid_win:
-                    val_mean, val_std = get_mean_and_STD(ds_filled, var_ds, i_time)
+                    val_mean, val_std = get_mean_and_STD(ds_filled, var_ds, i_time,
+                                                         coordinate_time)
                     dictionary_station[f'mean_px_{win}x{win}'] = val_mean
                     dictionary_station[f'std_px_{win}x{win}'] = val_std
                 else:
@@ -144,7 +145,8 @@ def Getting_dataframe_from_hdf(hdf_open,
                 valid_win = valid_windows(win)
                 
                 if isinstance(valid_win, int) and valid_pixels >= valid_win:
-                    val_mean, val_std = get_mean_and_STD(ds_filled, var_ds, i_time)
+                    val_mean, val_std = get_mean_and_STD(ds_filled, var_ds, i_time,
+                                                         coordinate_time)
                     dictionary_station[f'mean_px_{win}x{win}'] = val_mean
                     dictionary_station[f'std_px_{win}x{win}'] = val_std
                 else:
