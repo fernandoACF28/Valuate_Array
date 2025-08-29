@@ -46,13 +46,13 @@ def valid_windows(number):
 
 
 
-def Getting_dataframe_from_netCDF(path_netCDF,
+def Getting_dataframe_from_netCDF(ds_oppened,
                                var_ds: str,
                                coordinate_time: str,
                                dict_stations: dict,
                                window_sizes: list[int],
                                path_out: str,engine='netcdf4'):
-    ds = xr.open_dataset(path_netCDF,engine=engine)
+    ds = ds_oppened
     data_list = []
     size_time = len(ds[var_ds][coordinate_time])
     
