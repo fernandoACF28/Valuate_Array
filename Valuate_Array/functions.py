@@ -46,7 +46,7 @@ def valid_windows(number):
 
 
 
-def Getting_dataframe_from_netCDF_sequential(path_netCDF,
+def Getting_dataframe_from_netCDF(path_netCDF,
                                var_ds: str,
                                coordinate_time: str,
                                dict_stations: dict,
@@ -104,7 +104,7 @@ def Getting_dataframe_from_hdf(hdf_open,
     ds = hdf_open
     data_list = []
     try:
-        size_time = len(ds[var_ds].time)
+        size_time = len(ds[var_ds].coordinate_time)
     except: 
         print('Your hDF file need a time coordinate!')
 
