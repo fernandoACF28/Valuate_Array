@@ -51,8 +51,8 @@ def Getting_dataframe_from_netCDF(path_netCDF,
                                coordinate_time: str,
                                dict_stations: dict,
                                window_sizes: list[int],
-                               path_out: str):
-    ds = xr.open_dataset(path_netCDF)
+                               path_out: str,engine='netcdf4'):
+    ds = xr.open_dataset(path_netCDF,engine=engine)
     data_list = []
     size_time = len(ds[var_ds][coordinate_time])
     
