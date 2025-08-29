@@ -54,7 +54,7 @@ def Getting_dataframe_from_netCDF(path_netCDF,
                                path_out: str):
     ds = xr.open_dataset(path_netCDF)
     data_list = []
-    size_time = len(ds[var_ds].coordinate_time)
+    size_time = len(ds[var_ds][coordinate_time])
     
     for station in dict_stations:
         coords_station, station_name = dict_stations[station], station
@@ -104,7 +104,7 @@ def Getting_dataframe_from_hdf(hdf_open,
     ds = hdf_open
     data_list = []
     try:
-        size_time = len(ds[var_ds].coordinate_time)
+        size_time = len(ds[var_ds][coordinate_time])
     except: 
         print('Your hDF file need a time coordinate!')
 
