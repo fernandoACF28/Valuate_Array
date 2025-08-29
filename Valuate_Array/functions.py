@@ -7,6 +7,7 @@ def select_pixels(ds,var:str,
                   station: tuple[float, float],
                   window_size:int,lat,lon):
     ds = ds[var]
+    change_lat,change_lon= lat,lon 
     lat_station,lon_station = station[0],station[1]
     lat_idx = np.abs(ds[lat].values - lat_station).argmin()
     lon_idx = np.abs(ds[lon].values - lon_station).argmin()
@@ -15,9 +16,8 @@ def select_pixels(ds,var:str,
     lon_start = max(0, lon_idx - window_size)
     lon_end = min(len(ds[lon]), lon_idx + window_size + 1)
 
-    DatArray = ds.isel(
-                    lat=slice(lat_start, lat_end),
-                    lon=slice(lon_start, lon_end))
+    DatArray = ds.isel(change_lat=slice(lat_start, lat_end),
+                    change_lon=slice(lon_start, lon_end))
     return DatArray
 
 
