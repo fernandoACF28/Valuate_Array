@@ -27,15 +27,15 @@ def select_pixels(ds, var: str,
 
 
 
-def get_mean_and_STD(ds_filled,var,time_index):
+def get_mean_and_STD(ds_filled,var,time_index,cordinate_time):
     """
     ds_filled -->> data spatial filtered around the station.
     var -->> name of var of interesting
     time_index -->> it's important, because you have diferents arrays in time,
     you need to specify the index of time.
     """
-    val_mean = ds_filled[var].isel(time=time_index).mean().values.item()
-    std_val = ds_filled[var].isel(time=time_index).std().values.item()
+    val_mean = ds_filled[var].isel({cordinate_time:time_index}).mean().values.item()
+    std_val = ds_filled[var].isel({cordinate_time:time_index}).std().values.item()
     return val_mean,std_val
 
 def valid_windows(number):
@@ -87,7 +87,7 @@ def Getting_dataframe_from_netCDF(ds_oppened,
                                           lat=lat,
                                           lon=lon)
                 
-                arr = ds_filled[var_ds].isel({lat:i_time}).values
+                arr = ds_filled[var_ds].isel({time:i_time}).values
                 valid_pixels = int(np.sum(~np.isnan(arr)))
                 valid_win = valid_windows(win)
                 
