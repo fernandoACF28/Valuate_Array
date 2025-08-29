@@ -3,22 +3,28 @@ import pandas as pd
 import os
 import xarray as xr
 
-def select_pixels(ds,var:str,
+def select_pixels(ds, var: str,
                   station: tuple[float, float],
-                  window_size:int,lat,lon):
-    ds = ds[var]
-    change_lat,change_lon= lat,lon 
-    lat_station,lon_station = station[0],station[1]
+                  window_size: int, lat: str, lon: str):
+    ds = ds[var]  # seleciona a variável de interesse
+    lat_station, lon_station = station
+    
+    # índices mais próximos da estação
     lat_idx = np.abs(ds[lat].values - lat_station).argmin()
     lon_idx = np.abs(ds[lon].values - lon_station).argmin()
+    
+    # limites da janela
     lat_start = max(0, lat_idx - window_size)
-    lat_end = min(len(ds[lat]), lat_idx + window_size + 1)  
+    lat_end   = min(len(ds[lat]), lat_idx + window_size + 1)  
     lon_start = max(0, lon_idx - window_size)
-    lon_end = min(len(ds[lon]), lon_idx + window_size + 1)
+    lon_end   = min(len(ds[lon]), lon_idx + window_size + 1)
 
-    DatArray = ds.isel(change_lat=slice(lat_start, lat_end),
-                    change_lon=slice(lon_start, lon_end))
-    return DatArray
+    # aqui usamos as dimensões reais (lat, lon), não "change_lat/change_lon"
+    DataArray = ds.isel({lat: slice(lat_start, lat_end),
+                         lon: slice(lon_start, lon_end)})
+    
+    return DataArray
+
 
 
 def get_mean_and_STD(ds_filled,var,time_index):
