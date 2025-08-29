@@ -87,7 +87,7 @@ def Getting_dataframe_from_netCDF(ds_oppened,
                                           lat=lat,
                                           lon=lon)
                 
-                arr = ds_filled[var_ds].isel(time=i_time).values
+                arr = ds_filled[var_ds].isel({lat:i_time}).values
                 valid_pixels = int(np.sum(~np.isnan(arr)))
                 valid_win = valid_windows(win)
                 
